@@ -1,0 +1,662 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ICBrowser.Web.SiteMaster" %>
+
+<%@ Register Src="Controls/TopPanel.ascx" TagName="TopPanel" TagPrefix="uc1" %>
+<%@ Register Src="Controls/RightPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
+<%@ Register Src="Controls/BottomPanel.ascx" TagName="BottomPanel" TagPrefix="uc1" %>
+<%@ Register Src="Controls/NewsFeed.ascx" TagName="NewsFeed" TagPrefix="uc1" %>
+<%@ Register Src="Controls/ucCurrencyExchangeRate.ascx" TagName="ucCurrencyExchangeRate"
+    TagPrefix="uc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta name="description" content="e-Market for Buying and Selling of Electronic Components " />
+    <meta name="keywords" content="ICs,Electronic,Component,Selling,Buying,Trading" />
+    <meta name="author" content="metatags generator" />
+    <meta name="robots" content="index, follow" />
+    <%--<title>ICBrowser</title>--%>
+    <title>ICBrowser.com</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/icbfavicon.ico" />
+    <link href="Styles/themes/start/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/global.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="Styles/jquery.simplyscroll.css" media="all" type="text/css" />
+    <script src="js/jquery.min.1.5.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.1.8.js" type="text/javascript"></script>
+    <script src="js/jquery.cookies.2.2.0.js" type="text/javascript"></script>
+    <script src="Scripts/Toggle.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.simplyscroll.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $("#scroller").simplyScroll({ orientation: 'vertical', direction: 'backwards', customClass: 'vert' });
+            $('#divToToggle').show();
+            $('#divToToggle1').hide();
+        });
+    </script>
+    <script type="text/javascript" language="javascript">
+        function isEmpty() {
+            var myLength = $("#txtSearchString").val().length;
+            if (myLength > 0) {
+                $('[id$=imgbtnSearch]').attr('disabled', false);
+            }
+            else {
+                $('[id$=imgbtnSearch]').attr('disabled', true);
+            }
+        }
+    </script>
+    <script type="text/javascript" language="javascript">
+        function isEmpty() {
+            var myLength = $("#txtSearchString").val().length;
+            if (myLength > 0) {
+                $('[id$=imgbtnSearch]').attr('disabled', false);
+            }
+            else {
+                $('[id$=imgbtnSearch]').attr('disabled', true);
+            }
+        }
+        function DisableHistory() {
+
+            window.history.forward(1);
+        }
+        function RedirectToHome() {
+
+            setTimeout("window.location = '~/Default.aspx'", 0);
+        }
+    </script>
+    <script type='text/javascript'>
+        $.fx.speeds._default = 1000;
+        $(document).ready(function () {
+            document.getElementById('txtPassword').onkeypress = function (e) {
+                if (!e) e = window.event;
+                if (e.keyCode == '13') {
+                    document.getElementById('HiddenUsername').value = $('#txtUname').val();
+                    document.getElementById('HiddenPassword').value = $('#txtPassword').val();
+                    $('#dialog-form').dialog('close');
+                    document.getElementById('<% = btnNew.ClientID %>').click();
+                    return false;
+                }
+            }
+            $('#dialog-form').dialog({
+                autoOpen: false,
+                show: 'blind',
+                hide: 'blind'
+            });
+        });
+        $(function () {
+            $('#dialog:ui-dialog').dialog('destroy');
+            allFields = $([]).add(name).add(password),
+            	                    tips = $('.validateTips');
+            var name = $('#txtUname'),
+			                        password = $('#txtPassword'),
+			                        allFields = $([]).add(name).add(password),
+			                        tips = $('.validateTips');
+            function updateTips(t) {
+                tips
+				                    .text(t)
+				                    .addClass('ui-state-highlight');
+                setTimeout(function () {
+                    tips.removeClass('ui-state-highlight', 1500);
+                }, 500);
+            }
+            function checkLength(o, n, min, max) {
+                if (o.val().length > max || o.val().length < min) {
+                    o.addClass('ui-state-error');
+                    updateTips('Length of ' + n + ' must be between ' + min + ' and ' + max + '.');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            function checkRegexp(o, regexp, n) {
+                if (!(regexp.test(o.val()))) {
+                    o.addClass('ui-state-error');
+                    updateTips(n);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            $('#dialog-form').dialog({
+                autoOpen: false,
+                height: 'auto',
+                width: 246,
+                modal: true,
+                position: [1290, 92],
+                draggable: false,
+                resizable: false,
+                buttons: {
+                    'Ok': function () {
+                        var bValid = true;
+                        allFields.removeClass('ui-state-error');
+                        bValid = bValid && checkLength(name, 'txtUname', 1, 50);
+                        bValid = bValid && checkLength(password, 'txtPassword', 3, 50);
+                        //bValid = bValid && checkRegexp(name, /^[a-z]([0-9a-z_])+$/i, 'Username may consist of a-z, 0-9, underscores, begin with a letter.');
+                        //bValid = bValid && checkRegexp(password, /^([0-9a-zA-Z])+$/, 'Password field only allow : a-z 0-9');
+                        if (bValid) {
+                            document.getElementById('HiddenUsername').value = $('#txtUname').val();
+                            document.getElementById('HiddenPassword').value = $('#txtPassword').val();
+                            $(this).dialog('close');
+                            document.getElementById('<% = btnNew.ClientID %>').click();
+                        }
+                    },
+                    Cancel: function () {
+                        $(this).dialog('close');
+                        // $('#HiddenValidUser').value == 'true';
+                    }
+                },
+                close: function () {
+                    allFields.val('').removeClass('ui-state-error');
+                }
+            });
+            $('#hyp_log').click(function () {
+                var remember = $.cookies.get('chkSelect');
+                if (remember != 'true') {
+                    var usernme = $.cookies.get('username');
+                    var passwrd = $.cookies.get('password');
+                    // autofill the fields
+                    $('#txtUname').attr("value", usernme);
+                    $('#txtPassword').attr("value", passwrd);
+                }
+                $('#dialog-form').dialog('open');
+            });
+        });
+        $(document).ready(function () {
+            if ($('#HiddenValidUser').val() == 'false') {
+                alert('Username or Password is not valid.');
+                // $('#HiddenValidUser').value = 'true'
+                $('#dialog-form').dialog('open');
+            }
+        });
+        function validateMembershipExpiry() {
+            alert('Your Membership has been expired. Please subscribe .');
+        }
+        function NotApprove() {
+            alert('Username or Password is not valid.');
+        }
+
+        $(document).ready(function () {
+            $('#btnNew').click(function () {
+
+                //IF CHECKBOX IS SET, COOKIE WILL BE SET
+                if ($("#chkSelect").attr('checked') == true) {
+                    var usrname = $('#txtUname').val(); //VALUE OF USERNAME
+                    var paswrd = $('#txtPassword').val(); //VALUE OF PASSWORD
+                    var date = new Date();
+                    date.setTime(date.getTime() + (60 * 5256000 * 1000));
+
+                    $.cookies.set('username', usrname, { expiresAt: date }); //SETS IN DAYS (10 YEARS)
+                    $.cookies.set('password', paswrd, { expiresAt: date }); //SETS IN DAYS (10 YEARS)
+                    $.cookies.set('chkSelect', true, { expiresAt: date });
+                } else {
+                    // reset cookies
+                    $.cookies.set('username', null);
+                    $.cookies.set('password', null);
+                    $.cookies.set('chkSelect', false);
+
+                }
+            });
+        });                
+    </script>    
+    <%--style for login control--%>
+    <%--Javascript For Login--%>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div id="main_container">
+        <div>
+            <asp:HiddenField ID="HiddenUsername" runat="server" />
+            <asp:HiddenField ID="HiddenPassword" runat="server" />
+            <asp:HiddenField ID="HiddenValidUser" runat="server" />
+            <asp:Button runat="server" Style="display: none" ID="btnNew" Text="Submit" OnClick="btnNew_Click"
+                ValidationGroup="SignInValidation1" />
+            <div id="dialog-form" title="Login" class="ui-dialog">
+                <fieldset>
+                    <table width="100%">
+                        <tr>
+                            <td width="30%" align="right">
+                                <b>
+                                    <asp:Label ID="lbluname" runat="server" Text="UserName"></asp:Label></b>
+                            </td>
+                            <td>
+                                <input type="text" name="name" id="txtUname" class="text ui-widget-content ui-corner-all" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <b>
+                                    <asp:Label ID="lblpass" runat="server" Text="Password"></asp:Label></b>
+                            </td>
+                            <td>
+                                <input type="password" name="password" id="txtPassword" value="" class="text ui-widget-content ui-corner-all" />
+                            </td>
+                        </tr>
+                        <tr style="width: 100%" align="left">
+                            <td colspan="2">
+                                <table width="100%">
+                                    <tr>
+                                        <td align="left">
+                                            <asp:CheckBox ID="chkSelect" runat="server" Text="Remember me" Checked="true" />
+                                            <%--<b><input type="checkbox" id="chkSelect" /> Remember me </b>--%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <asp:HyperLink ID="hypForgotPassword" runat="server" meta:resourcekey="HypForPassResource1"
+                                                ForeColor="#316192" Text="Forgot Password" NavigateUrl="ForgotPassword.aspx"></asp:HyperLink>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+        <%--main table start--%>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <%--top tr for top_bg--%>
+            <tr>
+                <td class="top_left" width="13px">
+                </td>
+                <td class="top_center">
+                </td>
+                <td class="top_right" width="13px">
+                </td>
+            </tr>
+            <%--tr for IC_logo--%>
+            <tr>
+                <td class="left_bg">
+                </td>
+                <td width="996" align="left" valign="top" bgcolor="#FFFFFF">
+                    <!--main body start-->
+                    <div style="padding: 0px 10px 5px 10px">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td style="width: 10%" align="left" valign="top">
+                                    <img src="images/icb_logo.jpg" alt="" width="218" height="51" />
+                                </td>
+                                <td style="width: 80%">
+                                    <div style="width: 100%">
+                                        <%--<marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="5" scrollamount="4" height="30px" white-space: "wrap">--%>
+                                        <table>
+                                            <tr>
+                                                <td style="color: Gray; font-weight: bold; padding-top: 5px">
+                                                    <asp:Label ID="lblmrq" runat="server" Text="e-Market for Buying and Selling Electronic Components"
+                                                        Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <%--</marquee>--%>
+                                    </div>
+                                </td>
+                                <td style="width: 10%" align="right" valign="top">
+                                    <div id="login_box">
+                                        <table width="100%" border="0" align="right" cellspacing="0">
+                                            <%--<tr align="right">
+                                                <td>
+                                                    <asp:Label ID="lblcontactdetails" runat="server" Text="[Contact us: 91-22-21026611]"></asp:Label>
+                                                </td>
+                                            </tr>--%>
+                                            <tr align="right">
+                                                <td style="padding-left: 20px" align="left" valign="bottom">
+                                                    <asp:Label ID="Label1" runat="server" Text="[Contact us: 91-22-21026611]"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:RadioButtonList runat="server" ID="rdlLanguagePreference" AutoPostBack="true"
+                                                        CausesValidation="false" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdlLanguagePreference_SelectedIndexChanged">
+                                                        <asp:ListItem Text="English" Value="en-IN" Selected="True">
+                                                        </asp:ListItem>
+                                                        <asp:ListItem Text="中国的" Value="zh-CN" Enabled="false"></asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                </td>
+                                            </tr>
+                                            <tr align="right">
+                                                <td colspan="2">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:Label ID="lblsignup" runat="server" Text="Not a member yet?"></asp:Label>
+                                                            </td>
+                                                            <td align="right" style="padding-top: 1px">
+                                                                <asp:LinkButton ID="lbtnCreateUser" runat="server" Text="Sign Up" ForeColor="#316192"
+                                                                    OnClick="lbtnCreateUser_Click">  <img src="Images/sign_up_btn.png" width="64" height="23" border="0" /></asp:LinkButton>
+                                                                <%--<asp:HyperLink ID="HyperLink4" runat="server" meta:resourcekey="HypNewUsrResource1"
+                                    ForeColor="#316192" Text="Create New User" NavigateUrl="~/Register.aspx"></asp:HyperLink>--%>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblslash" runat="server" Text="/">
+                                                                </asp:Label>
+                                                            </td>
+                                                            <td align="right">
+                                                                <asp:HyperLink ID="hyp_log" runat="server" BorderStyle="None" EnableTheming="False"
+                                                                    EnableViewState="False" Font-Bold="True" Style="height: 23px">
+                                                           <img src="Images/log_in_btn.png" width="64" height="23" border="0" /></asp:HyperLink>
+                                                                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="False">
+                                                                    <AnonymousTemplate>
+                                                                        <a id="HeadLoginStatus0" runat="server" href="~/Site.Master"></a>
+                                                                    </AnonymousTemplate>
+                                                                    <LoggedInTemplate>
+                                                                        Welcome <span class="bold">
+                                                                            <asp:LoginName ID="HeadLoginName" runat="server" meta:resourcekey="HeadLoginNameResource1"
+                                                                                ForeColor="#3333FF" />
+                                                                        </span>! [
+                                                                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/"
+                                                                            LogoutText="Log Out" meta:resourcekey="HeadLoginStatusResource1" OnLoggedOut="HeadLoginStatus_LoggedOut" />
+                                                                        ]
+                                                                    </LoggedInTemplate>
+                                                                </asp:LoginView>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td class="right_bg">
+                </td>
+            </tr>
+            <%--tr for navigation bar--%>
+            <tr>
+                <td class="left_bg">
+                </td>
+                <td width="996" align="left" valign="top" bgcolor="#FFFFFF">
+                    <!--main body start-->
+                    <div style="padding: 10px 10px 10px 10px">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="menu_left_bg">
+                                </td>
+                                <td>
+                                    <div id="navcontainer">
+                                        <ul id="menu">
+                                            <li><a href="Default.aspx">Home</a></li>
+                                            <li id="liSellersfunction" runat="server" visible="false"><a id="anchSellFun" href="#"
+                                                runat="server" visible="false">Seller Platform</a>
+                                                <ul id="submenulist1">
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkSellFun" runat="server" PostBackUrl="~/UserOffers.aspx">Post/Edit Offers</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkBulkFun" runat="server" PostBackUrl="~/SellerUploadedInventory.aspx">Upload Inventory</asp:LinkButton></li>
+                                                    <li><a id="lnkDetailedBuyersRequirmnt" runat="server" href="DetailedBuyersRequirements.aspx">
+                                                        View Requirements</a> </li>
+                                                    <li><a id="A2" runat="server" href="RequirementsWithPO.aspx">View Requirements With
+                                                        PO</a> </li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lblRequirement" runat="server" PostBackUrl="~/ComponentSearchFiltered.aspx?RequestType=Requirements">Search Requirements Database</asp:LinkButton></li>
+                                                    <li><a id="lnkMatch" runat="server" href="MatchRequirements.aspx">Match requirements
+                                                        with my offer/inventory </a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="liBuyFun" runat="server" visible="false"><a id="anchBuyFun" href="#" runat="server"
+                                                visible="false">Buyer Platform</a>
+                                                <ul id="submenulist2">
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkBuyfun" runat="server" PostBackUrl="~/BuyersRequirment.aspx">Post/Edit New Requirements/PO</asp:LinkButton></li>
+                                                    <li><a id="lnkDetailedInventoryListing" runat="server" href="DetailInventoryListing.aspx">
+                                                        View Offers</a> </li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkSearchOffers" runat="server" PostBackUrl="~/ComponentSearchFiltered.aspx?RequestType=Offers">Search Offer Database</asp:LinkButton></li>
+                                                    <li><a id="lnkOffers" runat="server" href="MatchOffers.aspx">Match offers/inventories
+                                                        with my requirements/POs</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="profile" runat="server" visible="false"><a href="#" id="myprofile" runat="server">
+                                                My Profile</a>
+                                                <ul id="submenulist">
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkViewProfile" runat="server" OnClick="lnkViewProfile_Click">View/Edit Profile</asp:LinkButton></li>
+                                                    <%--<li>
+                                                        <asp:LinkButton ID="lnkMemberslist" runat="server" OnClick="lnkMemberslist_Click">Member's List</asp:LinkButton></li>--%>
+                                                    <%-- <li>
+                                                            <asp:LinkButton ID="lnkMyMailBox" runat="server" OnClick="lnkMyMailBox_Click">My MailBox</asp:LinkButton></li>--%>
+                                                    <%-- <li>
+                                                        <asp:LinkButton ID="lnkFavourites" runat="server" OnClick="lnkFavourites_Click">Favourites</asp:LinkButton></li>--%>
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkChangePassword" runat="server" OnClick="lnkChangePassword_Click">Change Password</asp:LinkButton></li>
+                                                </ul>
+                                            </li>
+                                            <li id="limymailbox" runat="server" visible="false">
+                                                <asp:LinkButton ID="lnkMyMailBox" runat="server" OnClick="lnkMyMailBox_Click">My MailBox</asp:LinkButton>
+                                                <asp:Image ID="unreadMailCount" runat="server" ImageUrl="Images/new.gif" Style="vertical-align: top"
+                                                    Visible="false" />
+                                            </li>
+                                            <li id="liAdmin" runat="server" visible="false"><a href="#" id="admAnch" runat="server">
+                                                Admin Function</a>
+                                                <ul id="ulAdmin" style="z-index: 1000 !important">
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkAddRatingQuest" runat="server" PostBackUrl="AdminRating.aspx">Add Rating Questions</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lnlUploadAdvt" runat="server" PostBackUrl="UploadAdvertisement.aspx">Upload Advertisement</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkUsrDetls" runat="server" PostBackUrl="~/AdminUsrDetails.aspx">User Details</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="ilbstaticData" runat="server" PostBackUrl="StaticData.aspx">Static Data</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lnkadminPaswrd" runat="server" OnClick="lnkChangePassword_Click">Change Password</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lbtnOffSub" runat="server" PostBackUrl="~/OfflineSubscription.aspx">Offline Subscription</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lblbtnDeclineUsr" runat="server" PostBackUrl="~/DeclineUser.aspx">Declined User</asp:LinkButton></li>
+                                                    <li>
+                                                        <asp:LinkButton ID="lblbtnBroadcastEmail" runat="server" PostBackUrl="~/BroadcastEmail.aspx">Broadcast Email</asp:LinkButton></li>
+                                                </ul>
+                                            </li>
+                                            <li id="liAbtUs" runat="server"><a href="About.aspx">About Us</a></li>
+                                            <li id="liescrow" runat="server" visible="false"><a href="Escrow.aspx">Transaction Guideline</a></li>
+                                            <%--<li><a href="#">Solutions</a></li>--%>
+                                            <li id="liwhyus" runat="server"><a href="WhyUsData.aspx">Why Us</a></li>
+                                            <li id="liContUs" runat="server"><a href="ContactUs.aspx">Contact Us</a></li>
+                                            <li><a href="FAQ.aspx">FAQ</a> </li>
+                                        </ul>
+                                        <%--<asp:LinkButton Visible="false" runat="server" ID="profile1" ForeColor="White">My Profile</asp:LinkButton>--%>
+                                    </div>
+                                </td>
+                                <td class="menu_right_bg">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td class="right_bg">
+                </td>
+            </tr>
+            <%--tr for top add and online search--%>
+            <tr>
+                <td class="left_bg">
+                </td>
+                <td align="left" valign="top" bgcolor="#FFFFFF">
+                    <!--main body start-->
+                    <div style="padding: 0px 10px 10px 10px">
+                        <div class="left-panel" style="float: left; width: 70%">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" valign="top">
+                                        <%-- Place for top adervtisement content-panel --%>
+                                        <uc1:TopPanel ID="TopPanel1" runat="server" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <%--Online search --%>
+                        <div style="float: right; width: 24%; margin-right: 7px;" class="right-panel">
+                            <asp:Panel ID="srchPanel" runat="server" DefaultButton="imgbtnSearch">
+                                <div id="online_search">
+                                    <div class="search_icon">
+                                        <br />
+                                        <br />
+                                        <span style="font-weight: bold">Part Number Search</span>
+                                        <table class="search-table">
+                                            <tr>
+                                                <td style="padding-left: 10px">
+                                                    <asp:TextBox ID="txtSearchString" AutoCompleteType="Disabled" MaxLength="15" runat="server"
+                                                        Width="100%"></asp:TextBox>
+                                                </td>
+                                                <td style="padding-left: 15px">
+                                                    <%--<asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click"
+                                                        CssClass="signinbutt" BackColor="Transparent" BorderColor="Transparent" BorderStyle="None"
+                                                        CausesValidation="false" Enabled="false" />--%>
+                                                    <asp:ImageButton ID="imgbtnSearch" runat="server" ImageUrl="~/Images/Search.png"
+                                                        OnClick="imgbtnSearch_Click" />
+                                                </td>
+                                            </tr>
+                                            <%--<tr>
+                                                <td colspan="2">
+                                                    <asp:RadioButtonList ID="rblSearchType" runat="server" RepeatDirection="Horizontal"
+                                                        AutoPostBack="false">
+                                                        <asp:ListItem Text="Inventory" Value="0" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Text="Requirement" Value="1"></asp:ListItem>
+                                                        <asp:ListItem Text="Offers" Value="2"></asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                </td>
+                                            </tr>--%>
+                                        </table>
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+                </td>
+                <td class="right_bg">
+                </td>
+            </tr>
+            <%--tr for grids and right add--%>
+            <tr>
+                <td class="left_bg">
+                </td>
+                <td align="left" valign="top" bgcolor="#FFFFFF">
+                    <!--main body start-->
+                    <div style="padding: 10px">
+                        <div style="float: left; width: 100%">
+                            <div id="content">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left">
+                                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <%-- Place for right adervtisement content-panel --%>
+                            <div id="right_advt">
+                                <uc1:RightPanel ID="RightPanel" runat="server" />
+                            </div>
+                            <div id="currency_exchange" style="padding-right: 10px;">
+                                <table width="75%" style="overflow: scroll">
+                                    <tr>
+                                        <td>
+                                            <%--<span>Industrial News</span>--%>
+                                            <a id="a1" href="javascript:toggleAndChangeText();">Industrial News</a>
+                                            <div id="divToToggle1">
+                                                <div>
+                                                    <table style="width: 104%; overflow: scroll">
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <uc1:NewsFeed ID="newsFeed" runat="server" />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <%--<a id="aTag" class="mine-button" style="padding-left: 0px" href="javascript:toggleAndChangeText();">
+                                                Today's Exchange Rate</a>--%>
+                                            <div id="divToToggle">
+                                                <div>
+                                                    <table style="width: 104%; overflow: scroll">
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <table style="width: 100%">
+                                                                        <tr>
+                                                                            <td style="text-align: center">                                                                                
+                                                                                <!--- Secure Site Seal - DO NOT EDIT --->
+                                                                                <span id="ss_img_wrapper_115-55_image_en"><a href="http://www.alphassl.com/ssl-certificates/wildcard-ssl.html"
+                                                                                    target="_blank" title="SSL Certificates">
+                                                                                    <img alt="Wildcard SSL Certificates" border="0" id="ss_img" src="//seal.alphassl.com/SiteSeal/images/alpha_noscript_115-55_en.gif"
+                                                                                        title="SSL Certificate"></a></span><script type="text/javascript" src="//seal.alphassl.com/SiteSeal/alpha_image_115-55_en.js"></script>
+                                                                                <!--- Secure Site Seal - DO NOT EDIT --->
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <%-- Place for bottom adervtisement content-panel --%>
+                            <div style="float: left; width: 75%;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            <uc1:BottomPanel ID="BottomPanel" runat="server" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="right_bg">
+                </td>
+            </tr>
+            <%--bottom tr for bottom_bg image--%>
+            <tr>
+                <td class="bot_left">
+                </td>
+                <td class="bot_center">
+                </td>
+                <td class="bot_right">
+                </td>
+            </tr>
+        </table>
+        <!-- BEGIN: Powered by Supercounters.com -->
+        <center>
+            <table>
+                <tr id="usercounts" runat="server" visible="false">
+                    <td>
+                        <asp:Label ID="lblUserCount" runat="server" Text="You are Visitor #" Font-Bold="true"
+                            ForeColor="White" Visible="true" />
+                    </td>
+                    <td>
+                        <script type="text/javascript" src="http://widget.supercounters.com/hit.js"></script>
+                        <script type="text/javascript">                            sc_hit(386738, 1, 5);</script>
+                        <br>
+                        <noscript>
+                            <a href="http://www.supercounters.com/">User Count</a></noscript>
+                    </td>                    
+                </tr>                
+            </table>            
+        </center>
+        <!-- END: Powered by Supercounters.com -->
+        <%--main table ends--%>
+    </div>
+    <div id="footer" style="padding: 0px 0px 10px 10px">
+        <a href="TermsAndConditions.aspx" class="footer">Terms &amp; Conditions</a> | <a
+            href="PrivatePolicyData.aspx" class="footer">Privacy Policy</a> | <a href="FAQ.aspx"
+                class="footer">FAQ</a> | <a href="ContactUs.aspx" class="footer">Contact Us</a>
+        | <a href="MembershipFee.aspx" class="footer">Membership Plan</a><br />
+        All Rights Reserved © The ICBrowser 2000 - 2012<br />
+        Best viewed in IE6 and above (1280 x 720 and above Resolution)
+    </div>
+    </form>
+</body>
+</html>

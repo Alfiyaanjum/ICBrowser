@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EMailFormats>
+  <AccountActivation>
+    <Subject>Account Activation</Subject>
+    <FileName>AccountActivation.htm</FileName>
+  </AccountActivation>
+  <AccountRequest>
+    <Subject>New Account</Subject>
+    <FileName>AccountRequest.htm</FileName>
+  </AccountRequest>
+  <ForgetPassword>
+    <Subject>Account Password</Subject>
+    <FileName>ForgetPassword.htm</FileName>
+  </ForgetPassword>
+  <AdminApprovedMail>
+    <Subject>Administrator has sent message from ICBrowser.com</Subject>
+    <FileName>AdminApprovedMail.htm</FileName>
+  </AdminApprovedMail>
+  <EmailSentTemplate>
+    <Subject>Administrator has sent message from ICBrowser.com</Subject>
+    <FileName>EmailSentTemplate.htm</FileName>
+  </EmailSentTemplate>
+  <AccountApproval>
+    <Subject>Subject</Subject>
+    <FileName>AccountApproval.htm</FileName>
+  </AccountApproval>
+  <TrialsellerSentEmail>
+    <Subject>Offline Payment Procedure</Subject>
+    <FileName>TrialsellerSentEmail.htm</FileName>
+  </TrialsellerSentEmail>
+  <SellerNotificationMail>
+    <Subject>Administrator has sent message from ICBrowser.com</Subject>
+    <FileName>SellerNotificationMail.htm</FileName>
+  </SellerNotificationMail>
+</EMailFormats>

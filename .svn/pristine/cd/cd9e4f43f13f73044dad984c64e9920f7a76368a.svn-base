@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Session Time Out</title>
+    <style>
+    .headerback
+{
+  /*background:#7ab0d3;*/
+  background:#8BBDE2;  
+  padding-left:5px;
+}
+.header {
+	position: relative;
+	margin: 0px;
+	padding: 0px;/*background: #D3D3D3;*/
+	font-weight: bold;
+	color: #036;
+	font-size: 16px;
+	line-height:30px;
+}
+    </style>
+</head>
+<body>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top" align="center">
+                <table width="80%" cellpadding="0" cellspacing="0">
+                    <tr style="background-color: #dfedf7;">
+                        <td>
+                            <div class="headerback">
+                                <span class="header">Oops; Your Session has Expired. </span> 
+                            </div>
+                            <br />
+                            <h4>
+                                This error has occured for one of the following reasons:
+                            </h4>
+                            <h5>
+                                1. You have used Back/Forward/Refresh button of your Browser.
+                                <br />
+                                2. You have double clicked on any options/buttons.<br />
+                                3. You have kept the browser window idle for a long time.
+                            </h5>
+                            <br />
+                            Click <a href="Default.aspx">here</a> to go to Home Page.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

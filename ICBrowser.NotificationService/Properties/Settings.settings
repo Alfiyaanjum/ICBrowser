@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ICBrowser.NotificationService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RefreshComponentTime" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Port" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="RequirementsSheetPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\Uploaded_Files\</Value>
+    </Setting>
+    <Setting Name="DataSheetPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\DataSheets\</Value>
+    </Setting>
+    <Setting Name="EMAIL_TEMPLATE_FOLDER_PATH" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\EmailTemplates\</Value>
+    </Setting>
+    <Setting Name="EMAIL_MAPPING_XML_FILE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EMail.xml</Value>
+    </Setting>
+    <Setting Name="AllowCrossPageValidation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="Host" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.1and1.com</Value>
+    </Setting>
+    <Setting Name="Username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">support@icbrowser.com</Value>
+    </Setting>
+    <Setting Name="ForeignCurrenciesXmlPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\CurrencyXML\</Value>
+    </Setting>
+    <Setting Name="ForeignCurrenciesXmlFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ForeignCurrencies.xml</Value>
+    </Setting>
+    <Setting Name="NotificationInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">86400000</Value>
+    </Setting>
+    <Setting Name="DataInsertInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">14400000</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">to66m8al</Value>
+    </Setting>
+    <Setting Name="threadSleepTimeInterval" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="ExchangeRateUpdateInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

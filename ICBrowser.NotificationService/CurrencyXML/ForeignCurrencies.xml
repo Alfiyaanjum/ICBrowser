@@ -1,0 +1,18 @@
+<ForeignCurrencies>
+	<CurrencyDetails>
+		<CurrencyCode>USD</CurrencyCode>
+		<ExchangeRate>54.305</ExchangeRate>
+	</CurrencyDetails>
+	<CurrencyDetails>
+		<CurrencyCode>GBP</CurrencyCode>
+		<ExchangeRate>86.6728</ExchangeRate>
+	</CurrencyDetails>
+	<CurrencyDetails>
+		<CurrencyCode>EUR</CurrencyCode>
+		<ExchangeRate>69.0401</ExchangeRate>
+	</CurrencyDetails>
+	<CurrencyDetails>
+		<CurrencyCode>CNY</CurrencyCode>
+		<ExchangeRate>8.7593</ExchangeRate>
+	</CurrencyDetails>
+</ForeignCurrencies>

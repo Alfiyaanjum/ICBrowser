@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ICBrowser.Web.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MerchantID" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">200904281000001</Value>
+    </Setting>
+    <Setting Name="HandleTransactionResponse" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TransactionResponse.aspx</Value>
+    </Setting>
+    <Setting Name="FileSize" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4194304</Value>
+    </Setting>
+    <Setting Name="MessageAttachment" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Apps\Icbrowser\MessageAttachment\</Value>
+    </Setting>
+    <Setting Name="FileAttachment" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Apps\Icbrowser\FileAttachment\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

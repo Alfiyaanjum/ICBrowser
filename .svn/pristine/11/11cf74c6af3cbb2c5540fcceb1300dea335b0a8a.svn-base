@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Email</title>
+    <style type="text/css">
+        .style1
+        {
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body>
+    <img src='cid:icb_logo.jpg' alt="ICBrowser" />
+    <br />
+    <br />
+    <strong><span class="style1">ICBrowser</span></strong><br />
+    <br />
+    <div style=" font-size: small">
+        Hi <b>#ToUserName#</b>,
+        <br />
+        <br />
+        <b>#FromUserName#&nbsp; </b>has sent you message.<br />
+        For Upgradation of Your Membership please forward us the your Demand-Draft,Cheque
+        transaction details on this below Mentioned address.
+        <br />
+        Corporate Office<br />
+        NIKEE INFOTECH<br />
+        20, Rameshwar<br/>
+        V B Lane, Ghatkpoar(E)<br/>        
+        Mumbai 400 077,India<br />      
+        Tel: 091 22 21026611 
+        <br />
+        E-mail: Sales@IcBrowser.com
+        <br />
+    </div>
+    <div style=" font-size: small">
+        <br />
+        Thanks ,<br />
+        Administrator,<br />
+        ICBrowser Team.</div>
+    <div style=" font-size: small">
+        <br />
+        <strong>Note</strong>: This is an auto-generated mail. Please do not reply to this mail.<br />
+    </div>
+</body>
+</html>

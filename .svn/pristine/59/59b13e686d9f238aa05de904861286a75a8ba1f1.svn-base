@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Email</title>
+    <style type="text/css">
+        .style1
+        {
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body >
+   <img src='cid:icb_logo.jpg' /> 
+   <!-- <img src="EmailTemplate/icb_logo.jpg" alt="icb_logo.jpg"  width="304" height="228"/>-->
+    <br />
+    <br />
+    <div style=" font-size: small">
+        Hi <b>#ToUserName#</b>,
+        <br />
+        <br />
+        Following Seller's have components of your interests:
+        <br />
+        <br />
+    </div>
+    <div style=" font-size: small">
+        <div>
+        <table border="1"><tr><td><b>Part Number</b></td><td><b>Company Name</b></td><td><b>Contact Name</b></td><td><b>Quantity</b></td><td><b>Phone Number</b></td><td><b>Email</b></td></tr>
+
+            #TableComp#<br />
+        </div>
+    </div>
+    <div style=" font-size: small">
+     <br />
+        Following Seller's have offers of your interests:
+        <br />
+        <br />
+    </div>
+    <div style=" font-size: small">
+        <div>
+        <table border="1"><tr><td><b>Part Number</b></td><td><b>Company Name</b></td><td><b>Contact Name</b></td><td><b>Quantity</b></td><td><b>Phone Number</b></td><td><b>Email</b></td></tr>
+
+            #TableOffer#<br />
+        </div>
+    </div>
+    <div style=" font-size: small">
+        <br />
+        Thanks & Regards,<br />
+        Administrator<br />
+        AutoICbrowser@AlphaBricks<br />
+    </div>
+    <div style=" font-size: small">
+        <br />
+        Note: This is an auto-generated mail. Please do not reply to this mail.<br />
+    </div>
+</body>
+</html>
